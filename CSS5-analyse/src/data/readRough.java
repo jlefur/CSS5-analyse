@@ -35,19 +35,23 @@ public class readRough {
 
 	public static void main(String[] args) throws Throwable {
 		readRough x = new readRough();
-		x.printer = new PrintWriter(new BufferedWriter(new FileWriter(new File("network_Marine.csv"), true)));
+		x.printer = new PrintWriter(new BufferedWriter(new FileWriter(new File("network_Marine1.csv"), true)));
 		x.readFile();
 		for (int i = 0; i < x.chronoLength; i++) {
 			String[] activities = x.fullEvents_Ustring.get(i).split(";");
 			for (int j = 0; j < activities.length; j++) {
-				if (activities[j].toUpperCase().contains("MARINE") || activities[j].contains("UMR"))
-//					System.out.println("///"+activities[j]);
+				if (activities[j].toUpperCase().contains("MARINE") || activities[j].toUpperCase().contains("MAR.")
+						|| activities[j].toUpperCase().contains("OCEAN")) {
+					System.out.println("///" + activities[j]);
 					for (int k = j + 1; k < activities.length; k++) {
-						if (activities[k].toUpperCase().contains("MARINE") || activities[k].contains("UMR")) {
-							x.printer.println(activities[j].trim() + ";" + activities[k].trim());
+						if (activities[k].toUpperCase().contains("MARINE") || activities[k].toUpperCase().contains(
+								"MAR.") || activities[k].toUpperCase().contains("OCEAN")) {
+							x.printer.println(activities[j].trim().toUpperCase() + ";" + activities[k].trim()
+									.toUpperCase());
 							System.out.println(activities[j].trim() + ";" + activities[k].trim());
 						}
 					}
+				}
 			}
 		}
 		x.printer.flush();
