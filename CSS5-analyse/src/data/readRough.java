@@ -35,22 +35,24 @@ public class readRough {
 
 	public static void main(String[] args) throws Throwable {
 		readRough x = new readRough();
-		x.printer = new PrintWriter(new BufferedWriter(new FileWriter(new File("network_society1.csv"), true)));
+		x.printer = new PrintWriter(new BufferedWriter(new FileWriter(new File("20231009-NetworkConsolides'.csv"), true)));
 		x.readFile();
 		for (int i = 0; i < x.chronoLength; i++) {
 			String[] activities = x.fullEvents_Ustring.get(i).split(";");
-			for (int j = 0; j < activities.length; j++) {
-				if (activities[j].toUpperCase().contains("SOC")) {
-					System.out.println("///" + activities[j]);
-					for (int k = j + 1; k < activities.length; k++) {
-						if (activities[k].toUpperCase().contains("SOC")) {
+			for (int j = 0; j < activities.length; j++) 
+//			{
+//				if (activities[j].toUpperCase().contains("SOC")) {
+//					System.out.println("///" + activities[j]);
+					for (int k = j + 1; k < activities.length; k++) 
+//					{
+//						if (activities[k].toUpperCase().contains("SOC")) {
 							x.printer.println(activities[j].trim().toUpperCase() + ";" + activities[k].trim()
 									.toUpperCase());
-							System.out.println(activities[j].trim() + ";" + activities[k].trim());
-						}
-					}
-				}
-			}
+//							System.out.println(activities[j].trim() + ";" + activities[k].trim());
+//						}
+//					}
+//				}
+//			}
 		}
 		x.printer.flush();
 	}
